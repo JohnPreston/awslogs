@@ -3,11 +3,11 @@ state_file = /var/lib/awslogs/agent-state
 use_gzip_http_content_encoding = true
 
 {% for log_stream in log_streams%}
-[{{ log_stream.log_group_name }}-{{ log_stream.file_name }}]
+[{{ log_stream.log_group_name }}-{{ log_stream.file_name.split('.')[0] }}]
 datetime_format = {{ log_stream.date_format }}
 file = {{ log_stream.file_dir }}/{{ log_stream.file_name }}
 buffer_duration = 5000
-log_stream_name = {{ log_stream.log_stream_name }}
+log_stream_name = {{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
 initial_position = start_of_file
 log_group_name = {{ log_stream.log_group_name }}
 
