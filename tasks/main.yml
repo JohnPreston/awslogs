@@ -4,6 +4,15 @@
 - name: Set EC2 facts
   ec2_facts:
 
+- name: Get Tags
+  script: self_identify.yml --all
+  register: tags_stdout
+
+- name: Set Tags
+  set_facts: tags="{{ tags_stdout|from_json }}"
+  when:
+  - tags_stdout|succeeded
+
 - name: Install AWS Logs agent
   yum: name=awslogs state=present
   become: yes
