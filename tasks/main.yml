@@ -4,12 +4,26 @@
 - name: Set EC2 facts
   ec2_facts:
 
+- name: Check boto3
+  script: check_boto.py
+  register: boto_present
+  ignore_errors: yes
+
+- name: Install boto3
+  pip: name=boto3 state=latest
+  become: yes
+  when:
+  - boto_present|failed
+
+- name: Set region
+  shell: aws configure set region {{ ansible_ec2_placement_region }}
+
 - name: Get Tags
-  script: self_identify.yml --all
+  script: self_identify.py --all
   register: tags_stdout
 
 - name: Set Tags
-  set_facts: tags="{{ tags_stdout|from_json }}"
+  set_fact: tags="{{ tags_stdout.stdout|from_json }}"
   when:
   - tags_stdout|succeeded
 
