@@ -34,12 +34,12 @@
 - name: Set destination_folder
   set_fact: dest_folder="{{ tmp_dir }}"
   when:
-  - debug
+  - not for_real
 
 - name: Set destination_folder
-  set_fact: dest_folder="{{ aws_log_conf_dir }}"
+  set_fact: dest_folder="{{ aws_logs_conf_dir }}"
   when:
-  - not debug
+  - for_real
 
 - name: Create AWS Cli configuration file for AWS Logs
   template: src="{{ aws_cli_conf_file}}.j2" dest="{{ dest_folder }}/{{ aws_cli_conf_file }}"
@@ -48,3 +48,9 @@
 - name: Create AWS Logs configuration file
   template: src="{{ aws_logs_conf_file }}.j2" dest="{{ dest_folder }}/{{ aws_logs_conf_file }}"
   become: yes
+
+- name: Start Agent
+  service: name=awslogs state=started
+  become: yes
+  when:
+  - for_real

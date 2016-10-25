@@ -1,7 +1,7 @@
 ---
 # defaults file for awslogs
 
-debug: True
+for_real: False
 tmp_dir: /var/tmp
 aws_logs_conf_dir: /etc/awslogs
 aws_cli_conf_file: awscli.conf
