@@ -1,0 +1,27 @@
+---
+# tasks file for awslogs
+
+- name: Set EC2 facts
+  ec2_facts:
+
+- name: Install AWS Logs agent
+  yum: name=awslogs state=present
+  become: yes
+
+- name: Set destination_folder
+  set_fact: dest_folder="{{ tmp_dir }}"
+  when:
+  - debug
+
+- name: Set destination_folder
+  set_fact: dest_folder="{{ aws_log_conf_dir }}"
+  when:
+  - not debug
+
+- name: Create AWS Cli configuration file for AWS Logs
+  template: src="{{ aws_cli_conf_file}}.j2" dest="{{ dest_folder }}/{{ aws_cli_conf_file }}"
+  become: yes
+
+- name: Create AWS Logs configuration file
+  template: src="{{ aws_logs_conf_file }}.j2" dest="{{ dest_folder }}/{{ aws_logs_conf_file }}"
+  become: yes

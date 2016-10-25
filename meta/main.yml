@@ -1,0 +1,21 @@
+galaxy_info:
+  author: John Mille
+  description: AWS Log agent install and config
+  company: EWS
+
+  license: GPLv3
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Amazon
+    versions:
+    - all
+    - 2016.03
+
+  galaxy_tags:
+    - ec2
+    - cloudwatch
+    - logs
+    - aws
+
+dependencies: []
