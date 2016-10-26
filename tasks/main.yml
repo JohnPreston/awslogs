@@ -49,8 +49,8 @@
   template: src="{{ aws_logs_conf_file }}.j2" dest="{{ dest_folder }}/{{ aws_logs_conf_file }}"
   become: yes
 
-- name: Start Agent
-  service: name=awslogs state=started
+- name: Restart Agent
+  service: name=awslogs state=restarted
   become: yes
   when:
   - for_real
