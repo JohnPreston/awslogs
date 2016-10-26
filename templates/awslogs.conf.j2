@@ -10,5 +10,6 @@ buffer_duration = 5000
 log_stream_name = {{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
 initial_position = start_of_file
 log_group_name = {{ log_stream.log_group_name }}
+time_zone = {{ timezone }}
 
 {% endfor %}

@@ -6,3 +6,5 @@ tmp_dir: /var/tmp
 aws_logs_conf_dir: /etc/awslogs
 aws_cli_conf_file: awscli.conf
 aws_logs_conf_file: awslogs.conf
+
+timezone: UTC
