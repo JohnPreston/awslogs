@@ -8,7 +8,7 @@ datetime_format = {{ log_stream.date_format }}
 file = {{ log_stream.file_dir }}/{{ log_stream.file_name }}
 buffer_duration = 5000
 {% if use_time_prefix %}
-log_stream_name = -{{ ansible_date_time.date }}-{{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
+log_stream_name = {{ ansible_date_time.date }}-{{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
 {% else %}
 log_stream_name = {{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
 {% endif %}
