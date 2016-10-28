@@ -8,4 +8,4 @@ aws_cli_conf_file: awscli.conf
 aws_logs_conf_file: awslogs.conf
 
 timezone: UTC
-use_time_separator: True
+use_time_prefix: True
