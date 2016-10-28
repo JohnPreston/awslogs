@@ -12,8 +12,9 @@ log_stream_name = {{ ansible_date_time.date }}-{{ log_stream.log_stream_name }}-
 {% else %}
 log_stream_name = {{ log_stream.log_stream_name }}-{{ log_stream.file_name.split('.')[0] }}
 {% endif %}
-initial_position = start_of_file
+initial_position = {{ initial_start }}
 log_group_name = {{ log_stream.log_group_name }}
 time_zone = {{ timezone }}
+file_fingerprint_lines: {{ file_fingerprint_lines }}
 
 {% endfor %}
