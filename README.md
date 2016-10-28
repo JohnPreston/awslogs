@@ -18,6 +18,7 @@ Role Variables
 | aws_logs_conf_dir | string | True | /etc/awslogs | Default loction of the aws logs configuration files
 | aws_cli_conf_file | string | True | awscli.conf | Default configuration for aws logs cli parameters
 | aws_logs_conf_file | string | True | awslogs.conf | Default configuration file for aws logs
+| use_time_separator | boolean | True | True | For streams, separate each depending on the time of the execution
 
 
 Dependencies
