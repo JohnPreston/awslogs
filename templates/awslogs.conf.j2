@@ -15,6 +15,6 @@ log_stream_name = {{ log_stream.log_stream_name }}-{{ log_stream.file_name.split
 initial_position = {{ initial_start }}
 log_group_name = {{ log_stream.log_group_name }}
 time_zone = {{ timezone }}
-file_fingerprint_lines: {{ file_fingerprint_lines }}
+file_fingerprint_lines = {{ file_fingerprint_lines }}
 
 {% endfor %}
