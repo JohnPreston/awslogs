@@ -18,15 +18,6 @@
 - name: Set region
   shell: aws configure set region {{ ansible_ec2_placement_region }}
 
-- name: Get Tags
-  script: self_identify.py --all
-  register: tags_stdout
-
-- name: Set Tags
-  set_fact: tags="{{ tags_stdout.stdout|from_json }}"
-  when:
-  - tags_stdout|succeeded
-
 - name: Install AWS Logs agent
   yum: name=awslogs state=present
   become: yes
